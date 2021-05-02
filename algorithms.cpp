@@ -1,10 +1,8 @@
 //
-//стек вызовов -- DONE - StackWeightsCalls
-//переполнение стека -- DONE - OverFlowWeight_ERR
-//пирамидальная сортировка (heap sort) -- DONE - WeightHeapSort (и вложенные)
-//поиск значения при мин. кол-ве итераций (binary search) -- DONE - BinSearchWeight
-//
-//бор и префиксное древо(map)
+//DONE - StackWeightsCalls
+//DONE - OverFlowWeight_ERR
+//(heap sort) -- DONE - WeightHeapSort
+//(binary search) -- DONE - BinSearchWeight
 //
 
 #include <iostream>
@@ -55,7 +53,7 @@ public:
 
 	string OverFlowWeight_ERR(vector<int> weights) {
 
-		cout << "Функция OverFlowWeight_ERR: начала выполнение! " << endl;
+		cout << "Function OverFlow Weight_ERR: started execution!" << endl;
 
 		weights.push_back(5);
 
@@ -65,9 +63,9 @@ public:
 			{
 				if (i >= weights.size())
 				{
-					throw runtime_error("** Функция OverFlowWeight_ERR: переполнение стека! **");
+					throw runtime_error("** OverFlowWeight_ERR function: stack overflow! **");
 				}
-				cout << "  Вывод элемента вектора: " << weights[i] << endl;
+				cout << "  Output of the vector element: " << weights[i] << endl;
 			}
 		}
 		catch (const std::exception&ERR)
@@ -75,42 +73,42 @@ public:
 			cout << ERR.what() << endl;
 		}
 
-		return "Функция OverFlowWeight_ERR: закончила выполнение!";
+		return "Function OverFlow Weight_ERR: finished executing!";
 
 	}
 
 	string StackWeightsCalls(vector<int> weights) {
 
-		cout << "Функция StackWeightsCalls: начала выполнение! " << endl;
+		cout << "StackWeightsCalls function: started execution! " << endl;
 
 		if (weights.size() < 1)
 		{
 			weights.push_back(rand());
-			cout << "  Добавилось число: " << weights[0] << " Размер стека: " << weights.size() << endl;
+			cout << "  Added a number: " << weights[0] << " Stack Size: " << weights.size() << endl;
 		}
 
 		for (auto& it : weights) {
 			weights.pop_back();
-			cout << "  Удалилось число: " << it << " Размер стека: " << weights.size() << endl;
-			cout << "  Указатель занулен!" << endl;
-			weights.shrink_to_fit(); //освобождение памяти
+			cout << "  Number deleted: " << it << " Stack Size: " << weights.size() << endl;
+			cout << "  The pointer is reset!" << endl;
+			weights.shrink_to_fit(); //Г®Г±ГўГ®ГЎГ®Г¦Г¤ГҐГ­ГЁГҐ ГЇГ Г¬ГїГІГЁ
 		}
 
-		return "Функция StackWeightsCalls: закончила выполнение!";
+		return "StackWeightsCalls function: finished executing!";
 
 	}
 
 	string BinSearchWeight(vector<int> counts, int sought) {
-		cout << "Функция BinSortWeight: начала выполнение! " << endl;
+		cout << "Bin Search Weight function: started execution! " << endl;
 
 		if (find(counts.begin(), counts.end(), sought) == counts.end()) 
-			return "Функция BinSortWeight: *ERR* данного числа нет в векторе!";
+			return "Function Bin Search Weight: *ERR* this number is not in the vector!";
 
 		sort(counts.begin(), counts.end());
 		
 		bool Flag = false;
 
-		//границы
+		//ГЈГ°Г Г­ГЁГ¶Г»
 		unsigned int left = NULL;
 		unsigned int middle = NULL;
 		unsigned int right = counts.size();
@@ -124,28 +122,28 @@ public:
 			else right = middle;
 		}
 
-		if (Flag) cout << "  Искомое значение " << sought << " найдено по индексу: " << middle << endl;
-		else cout << "  Искомое значение не найдено! " << endl;
+		if (Flag) cout << "  The desired value " << sought << " found by index: " << middle << endl;
+		else cout << "  The desired value was not found! " << endl;
 
-		return "Функция BinSortWeight: закончила выполнение!";
+		return "Bin Search Weight function: finished executing!";
 
 	}
 
 	string WeightHeapSort(vector<int> weights) {
-		cout << "Функция WeightHeapSort: начала выполнение! " << endl;
+		cout << "Weight HeapSort function: started execution! " << endl;
 		
-		cout << "  Изначальный вектор: ";
+		cout << "  Initial vector: ";
 		for (auto& it : weights) cout << it << ' ';
 		cout << endl;
 
 		HeapMake(weights, weights.size() / 2 - 1, NULL);
 		SortPyramid(weights);
 		
-		cout << "  Отсортированный вектор: ";
+		cout << "  Sorted vector: ";
 		for (auto &it : weights) cout << it << ' '; 
 		cout << endl;
 
-		return "Функция WeightHeapSort: закончила выполнение!";
+		return "Weight HeapSort function: finished executing!";
 	}
 
 };
